@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_080323) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_16_093802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_words", comment: "Keeps user's interactions with words data", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "Belongs to User"
+    t.bigint "word_id", null: false, comment: "Belongs to Word"
+    t.date "delay_date", comment: "Don't show the word until this date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_words_on_user_id"
+    t.index ["word_id"], name: "index_user_words_on_word_id"
+  end
 
   create_table "users", comment: "Users table", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -28,4 +38,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_080323) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_words", "users"
+  add_foreign_key "user_words", "words"
 end
