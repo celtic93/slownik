@@ -10,11 +10,19 @@ class Word < ApplicationRecord
   }
 
   scope :for_exercise, lambda { |user_id|
-    left_joins(:user_words).where(user_words: { user_id:, delay_date: ..Date.today })
+    left_joins(:user_words).where(user_words: { user_id:, delay_date: ...Date.today })
                            .or(Word.where.missing(:user_words))
   }
 
   def self.random_for_user(user_id)
     for_exercise(user_id).offset(rand(for_exercise(user_id).count)).first
+  end
+
+  def front_translation
+    native? ? native : ru
+  end
+
+  def back_translation
+    native? ? ru : native
   end
 end

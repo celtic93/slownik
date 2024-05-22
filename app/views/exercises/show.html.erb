@@ -1,3 +1,15 @@
 <center>
-  <h1><%= @word[@word.locale] %></h1>
+  <% if @word.present? %>
+    <h1><%= @word.front_translation %></h1>
+    <h1 id="spoiler">*********</h1>
+    <h1 id="answer" class="hidden"><%= @word.back_translation %></h1>
+    <%= audio_tag @word.pronunciation, id: "audio" %>
+    <%= button_tag "Show the answer (S)", id: "show_the_answer" %>
+    <div class="ruby">
+      <%= button_to "Correct (Q)", exercise_path(correct: true, word_id: @word.id), method: :put, id: "correct", class: "hidden" %>
+      <%= button_to "Wrong (W)", exercise_path, method: :put, id: "wrong", class: "hidden" %>
+    </div>
+  <% else %>
+    <h1>Congratulations! You've learned all the words</h1>
+  <% end %>
 </center>
