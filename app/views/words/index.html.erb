@@ -2,6 +2,8 @@
 
 <h1>Words</h1>
 
+<%= link_to(new_word_path) { button_tag("Add new word") } %>
+
 <div id="words">
   <% @words.each do |word| %>
     <%= render word %>
@@ -10,5 +12,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New word", new_word_path %>
