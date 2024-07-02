@@ -1,6 +1,6 @@
 class ExercisesController < ApplicationController
   def show
-    @word = Word.random_for_user(current_user.id)
+    @result = Exercises::Show.new(current_user.id).set_exercise_data
   end
 
   def update
