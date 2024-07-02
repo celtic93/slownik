@@ -12,6 +12,14 @@
   </head>
 
   <body>
+    <header>
+      <div class="ruby">
+        <%= link_to(root_path) { button_tag("Home") } %>
+        <%= link_to(exercise_path) { button_tag("Exercise") } %>
+        <%= link_to(words_path) { button_tag("Words") } %>
+        <%= link_to(new_word_path) { button_tag("Add new word") } %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
