@@ -22,7 +22,7 @@ module Exercises
     end
 
     def set_word_for_exercise
-      result.word = words.offset(rand(words.count)).first
+      result.word = words.sample
     end
 
     class Result
