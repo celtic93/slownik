@@ -4,6 +4,7 @@ document.getElementById('show_the_answer')?.addEventListener('click', function()
   answer.classList.remove('hidden');
   correct.classList.remove('hidden');
   wrong.classList.remove('hidden');
+  play_audio.classList.remove('hidden');
   document.getElementById('audio').play();
 });
 
@@ -16,5 +17,8 @@ document.getElementById('show_the_answer') && document.addEventListener('keydown
   }
   if (event.code === 'KeyW') {
     if (!wrong.classList.contains('hidden')) wrong.click();
+  }
+  if (event.code === 'KeyA') {
+    if (!play_audio.classList.contains('hidden')) audio.play();
   }
 });

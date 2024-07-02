@@ -8,6 +8,7 @@
     <div class="ruby">
       <%= button_to "Correct (Q)", exercise_path(correct: true, word_id: @word.id), method: :put, id: "correct", class: "hidden" %>
       <%= button_to "Wrong (W)", exercise_path, method: :put, id: "wrong", class: "hidden" %>
+      <%= button_tag "Play Audio (A)", type: 'button', id: "play_audio", class: "hidden" %>
     </div>
   <% else %>
     <h1>Congratulations! You've learned all the words</h1>
