@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Words</h1>
+<h1><%= @words.count / 2 %> Words</h1>
 
 <%= link_to(new_word_path) { button_tag("Add new word") } %>
 
