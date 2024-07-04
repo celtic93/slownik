@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
   def show
-    @result = Exercises::Show.new(current_user.id).set_exercise_data
+    @result = Exercises::Show.new(current_user.id, params[:kind] || DEFAULT_AND_NEED_OPPOSITE_WORD_KIND)
+                             .set_exercise_data
   end
 
   def update
@@ -9,6 +10,6 @@ class ExercisesController < ApplicationController
       user_word.update(delay_date: ENV["DELAY_DAYS_NUMBER"].to_i.days.from_now)
     end
 
-    redirect_to exercise_path
+    redirect_to exercise_path(kind: params[:kind])
   end
 end

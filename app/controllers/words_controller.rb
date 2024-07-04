@@ -1,10 +1,8 @@
 class WordsController < ApplicationController
-  OPPOSITE_WORD_KIND = "vocabulary".freeze
-
   before_action :set_word, only: %i[show edit update destroy]
 
   def index
-    @words = Word.order(:native).all
+    @words = Word.order(:native).where(kind: params[:kind] || DEFAULT_AND_NEED_OPPOSITE_WORD_KIND)
   end
 
   def show; end
@@ -16,11 +14,11 @@ class WordsController < ApplicationController
   def edit; end
 
   def create
-    @word = Word.new(word_params.merge(locale: :ru))
-    @word2 = Word.new(word_params.merge(locale: :native)) if need_to_create_opposite_word
+    @word = Word.new(word_params.merge(locale: :native))
+    @word2 = Word.new(word_params.merge(locale: :ru)) if need_to_create_opposite_word
 
     if @word.save && (@word2.nil? || @word2.save)
-      redirect_to words_url, notice: "Word was successfully created."
+      redirect_to words_url(kind: @word.kind), notice: "Word was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,7 +34,7 @@ class WordsController < ApplicationController
 
   def destroy
     @word.destroy!
-    redirect_to words_url, notice: "Word was successfully destroyed.", status: :see_other
+    redirect_to words_url(kind: @word.kind), notice: "Word was successfully destroyed.", status: :see_other
   end
 
   private
@@ -50,6 +48,6 @@ class WordsController < ApplicationController
   end
 
   def need_to_create_opposite_word
-    word_params[:kind] == OPPOSITE_WORD_KIND
+    word_params[:kind] == DEFAULT_AND_NEED_OPPOSITE_WORD_KIND
   end
 end

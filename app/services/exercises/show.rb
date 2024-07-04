@@ -1,10 +1,11 @@
 module Exercises
   class Show
-    attr_accessor :user_id, :result, :words
+    attr_accessor :kind, :user_id, :result, :words
 
-    def initialize(user_id)
+    def initialize(user_id, kind)
       @result = Result.new
       @user_id = user_id
+      @kind = kind
     end
 
     def set_exercise_data
@@ -17,7 +18,7 @@ module Exercises
     private
 
     def set_available_words_count
-      @words = Word.for_exercise(user_id)
+      @words = Word.for_exercise(user_id, kind)
       result.remaining_words_count = words.count - 1
     end
 

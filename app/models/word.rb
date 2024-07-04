@@ -15,9 +15,9 @@ class Word < ApplicationRecord
     grammar: 1
   }
 
-  scope :for_exercise, lambda { |user_id|
-    left_joins(:user_words).where(user_words: { user_id:, delay_date: ...Date.today })
-                           .or(Word.where.missing(:user_words))
+  scope :for_exercise, lambda { |user_id, kind|
+    left_joins(:user_words).where(kind:, user_words: { user_id:, delay_date: ...Date.today })
+                           .or(Word.where.missing(:user_words).where(kind:))
   }
 
   def front_translation
