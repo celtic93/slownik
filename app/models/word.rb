@@ -1,12 +1,18 @@
 class Word < ApplicationRecord
   has_many :user_words
 
-  validates :native, :ru, :pronunciation, :locale, presence: true
-  validates :native, uniqueness: { scope: :locale }, if: -> { ru.present? }
+  validates :native, :ru, :locale, :kind, presence: true
+  validates :pronunciation, presence: true, if: -> { vocabulary? }
+  validates :native, uniqueness: { scope: %i[locale kind] }, if: -> { ru.present? }
 
   enum locale: {
     native: 0,
     ru: 1
+  }
+
+  enum kind: {
+    vocabulary: 0,
+    grammar: 1
   }
 
   scope :for_exercise, lambda { |user_id|

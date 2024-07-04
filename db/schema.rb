@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_16_093802) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_143539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_16_093802) do
     t.string "pronunciation", comment: "Link to external audio file with word pronunciation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kind", default: 0, comment: "Type of exercise to separate vocabulary and grammar"
   end
 
   add_foreign_key "user_words", "users"
