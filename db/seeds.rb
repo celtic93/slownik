@@ -71,17 +71,17 @@ grammar_attributes1 = {
   ru: "biegał",
   kind: "grammar"
 }
-Word.create(grammar_attributes1.merge(locale: :ru))
+Word.create(grammar_attributes1.merge(locale: :native))
 
-grammar_attributes1 = {
+grammar_attributes2 = {
   native: "begać (czas przyszły, rodzaj męski)",
   ru: "będę biegał",
   kind: "grammar"
 }
-Word.create(grammar_attributes1.merge(locale: :ru))
+Word.create(grammar_attributes2.merge(locale: :native))
 
 p 'Creating user_word with delay for tomorrow'
-UserWord.create(user: User.first, word: Word.first, delay_date: Date.tomorrow)
-UserWord.create(user: User.first, word: Word.last, delay_date: Date.tomorrow)
+UserWord.create(user: User.first, word: Word.vocabulary.first, delay_date: Date.tomorrow)
+UserWord.create(user: User.first, word: Word.vocabulary.last, delay_date: Date.tomorrow)
 
 p 'All seeds created successfully'
