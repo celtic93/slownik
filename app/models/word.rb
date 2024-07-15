@@ -1,4 +1,6 @@
 class Word < ApplicationRecord
+  DEFAULT_AND_NEED_OPPOSITE_WORD_KIND = "vocabulary".freeze
+
   has_many :user_words
 
   validates :native, :ru, :locale, :kind, presence: true

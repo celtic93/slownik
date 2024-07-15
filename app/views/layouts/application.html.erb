@@ -19,7 +19,8 @@
         <%= link_to(exercise_path(kind: "grammar")) { button_tag("Grammar Exercise") } %>
         <%= link_to(words_path) { button_tag("Vocabulary Words") } %>
         <%= link_to(words_path(kind: "grammar")) { button_tag("Grammar Words") } %>
-        <%= link_to(new_word_path) { button_tag("Add new word") } %>
+        <%= link_to(new_word_path) { button_tag("Add New Word") } %>
+        <%= link_to(new_multiple_word_path) { button_tag("Add Multiple Words") } %>
       </div>
     </header>
     <%= yield %>

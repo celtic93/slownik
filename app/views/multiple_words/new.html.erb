@@ -1,0 +1,24 @@
+<h1>Multiple words creation</h1>
+
+<% if flash[:words_messages]&.any? %>
+  <% flash[:words_messages].each do |message| %>
+    <div class="<%= message["status"] %>">
+      <%= message["text"] %>
+    </div>
+  <% end %>
+<% end %>
+
+<br>
+<br>
+<%= form_for :multiple_words, url: :multiple_words do |form| %>
+  <div>
+    <%= form.label :kind %>
+    <%= form.select :kind, Word.kinds.keys %>
+  </div>
+
+  <div>
+    <%= form.text_area :words_attributes, cols: 120, rows: 20, placeholder: "Native;Ru;Pronunciation" %>
+  </div>
+
+  <%= form.submit "Save" %>
+<% end  %>

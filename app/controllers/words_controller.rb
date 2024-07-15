@@ -2,7 +2,7 @@ class WordsController < ApplicationController
   before_action :set_word, only: %i[show edit update destroy]
 
   def index
-    @words = Word.order(:native).where(kind: params[:kind] || DEFAULT_AND_NEED_OPPOSITE_WORD_KIND)
+    @words = Word.order(:native).where(kind: params[:kind] || Word::DEFAULT_AND_NEED_OPPOSITE_WORD_KIND)
   end
 
   def show; end
@@ -48,6 +48,6 @@ class WordsController < ApplicationController
   end
 
   def need_to_create_opposite_word
-    word_params[:kind] == DEFAULT_AND_NEED_OPPOSITE_WORD_KIND
+    word_params[:kind] == Word::DEFAULT_AND_NEED_OPPOSITE_WORD_KIND
   end
 end
