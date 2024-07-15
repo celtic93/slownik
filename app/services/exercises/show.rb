@@ -9,7 +9,7 @@ module Exercises
     end
 
     def set_exercise_data
-      set_available_words_count
+      set_remaining_words_count
       set_word_for_exercise
 
       result
@@ -17,7 +17,7 @@ module Exercises
 
     private
 
-    def set_available_words_count
+    def set_remaining_words_count
       @words = Word.for_exercise(user_id, kind)
       result.remaining_words_count = words.count - 1
     end
