@@ -4,7 +4,7 @@ class MultipleWordsController < ApplicationController
   def new; end
 
   def create
-    @result = MultipleWords::Create.new(multiple_words_params).create_words
+    @result = MultipleWords::Create.new(multiple_words_params:).create_words
 
     redirect_to new_multiple_word_path, words_messages: @result.words_messages
   end

@@ -2,7 +2,7 @@ module Exercises
   class Show
     attr_accessor :kind, :user_id, :result, :words
 
-    def initialize(user_id, kind)
+    def initialize(user_id:, kind:)
       @result = Result.new
       @user_id = user_id
       @kind = kind

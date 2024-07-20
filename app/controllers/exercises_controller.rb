@@ -1,7 +1,9 @@
 class ExercisesController < ApplicationController
   def show
-    @result = Exercises::Show.new(current_user.id, params[:kind] || Word::DEFAULT_AND_NEED_OPPOSITE_WORD_KIND)
-                             .set_exercise_data
+    @result = Exercises::Show.new(
+      user_id: current_user.id,
+      kind: params[:kind] || Word::DEFAULT_AND_NEED_OPPOSITE_WORD_KIND
+    ).set_exercise_data
   end
 
   def update

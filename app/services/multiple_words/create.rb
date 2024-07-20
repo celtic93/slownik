@@ -2,7 +2,7 @@ module MultipleWords
   class Create
     attr_accessor :words_attributes, :kind, :result
 
-    def initialize(multiple_words_params)
+    def initialize(multiple_words_params:)
       @result = Result.new
       @words_attributes = multiple_words_params[:words_attributes].split("\r\n")
       @kind = multiple_words_params[:kind]
