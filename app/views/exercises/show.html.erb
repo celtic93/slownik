@@ -11,8 +11,8 @@
     <%= audio_tag @result.word.pronunciation, id: "audio" if @result.word.pronunciation.present? %>
     <%= button_tag "Show the answer (S)", id: "show_the_answer" %>
     <div class="ruby">
-      <%= button_to "Correct (Q)", exercise_path(correct: true, word_id: @result.word.id, kind: @result.word.kind), method: :put, id: "correct", class: "hidden" %>
-      <%= button_to "Wrong (W)", exercise_path(kind: @result.word.kind), method: :put, id: "wrong", class: "hidden" %>
+      <%= button_to "Correct (Q)", exercise_path(correct: true, kind: @result.word.kind, word_id: @result.word.id), method: :put, id: "correct", class: "hidden" %>
+      <%= button_to "Wrong (W)", exercise_path(kind: @result.word.kind, word_id: @result.word.id), method: :put, id: "wrong", class: "hidden" %>
       <%= button_tag "Play Audio (A)", type: 'button', id: "play_audio", class: "hidden" if @result.word.pronunciation.present? %>
     </div>
   <% else %>

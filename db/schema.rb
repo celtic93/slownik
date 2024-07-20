@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_143539) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_20_124622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_143539) do
     t.date "delay_date", comment: "Don't show the word until this date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "last_exercise_correct", default: true, null: false, comment: "Keep previous answer and set delay date according to this value"
     t.index ["user_id"], name: "index_user_words_on_user_id"
     t.index ["word_id"], name: "index_user_words_on_word_id"
   end
