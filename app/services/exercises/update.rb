@@ -26,18 +26,23 @@ module Exercises
 
     def update_user_word_with_params
       attributes = { last_exercise_correct: is_correct, delay_date: Date.yesterday }
-
-      if is_correct
-        delay_days_number =
-          user_word.last_exercise_correct? ? ENV["CORRECT_DELAY_DAYS_NUMBER"] : ENV["INCORRECT_DELAY_DAYS_NUMBER"]
-        attributes[:delay_date] = delay_days_number.to_i.days.from_now
-      end
+      attributes[:delay_date] = randomize_delay_date if is_correct
 
       user_word.update(attributes)
     end
 
     def set_result_kind
       result.kind = kind
+    end
+
+    def randomize_delay_date
+      delay_days_number = if user_word.last_exercise_correct?
+                            rand(ENV["CORRECT_DELAY_DAYS_NUMBER"].to_i..ENV["CORRECT_DELAY_DAYS_NUMBER"].to_i + 2)
+                          else
+                            rand(ENV["INCORRECT_DELAY_DAYS_NUMBER"].to_i..ENV["INCORRECT_DELAY_DAYS_NUMBER"].to_i + 1)
+                          end
+
+      delay_days_number.days.from_now
     end
 
     class Result
